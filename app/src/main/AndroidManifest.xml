@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
 
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".UserLoginActivity"/>
-        <activity android:name=".UserRegisterActivity"/>
+        <activity android:name=".View.MainActivity"/>
+        <activity android:name=".View.UserLoginActivity"/>
+        <activity android:name=".View.UserRegisterActivity"/>
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".View.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

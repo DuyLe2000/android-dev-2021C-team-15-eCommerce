@@ -1,6 +1,7 @@
-package group15.finalassignment.ecommerce;
+package group15.finalassignment.ecommerce.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import group15.finalassignment.ecommerce.R;
 
 import android.content.Intent;
 import android.os.Bundle;
