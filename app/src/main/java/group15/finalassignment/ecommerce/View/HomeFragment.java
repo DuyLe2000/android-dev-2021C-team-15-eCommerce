@@ -20,6 +20,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import group15.finalassignment.ecommerce.R;
+import group15.finalassignment.ecommerce.View.model.Product;
 
 public class HomeFragment extends Fragment {
 
@@ -45,11 +47,11 @@ public class HomeFragment extends Fragment {
 
     // New Products RecyclerView
     NewProductsAdapter newProductsAdapter;
-    List<NewProductsModel> newProductsModelList;
+    List<Product> newProductList;
 
     // Popular Products RecyclerView
     PopularProductsAdapter popularProductsAdapter;
-    List<PopularProductsModel> popularProductsModelList;
+    List<Product> popularProductList;
 
     // Firestore
     FirebaseFirestore db;
@@ -120,8 +122,8 @@ public class HomeFragment extends Fragment {
 
         // New Products Part
         newProductsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-        newProductsModelList = new ArrayList<>();
-        newProductsAdapter = new NewProductsAdapter(getContext(), newProductsModelList);
+        newProductList = new ArrayList<>();
+        newProductsAdapter = new NewProductsAdapter(getContext(), newProductList);
         newProductsRecyclerView.setAdapter(newProductsAdapter);
 
         db.collection("NewProducts")
@@ -131,8 +133,8 @@ public class HomeFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                NewProductsModel newProductsModel = document.toObject(NewProductsModel.class);
-                                newProductsModelList.add(newProductsModel);
+                                Product newProduct = document.toObject(Product.class);
+                                newProductList.add(newProduct);
                                 newProductsAdapter.notifyDataSetChanged();
                             }
                         } else {
@@ -143,8 +145,8 @@ public class HomeFragment extends Fragment {
 
         // Popular Products Part
         popularProductsRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        popularProductsModelList = new ArrayList<>();
-        popularProductsAdapter = new PopularProductsAdapter(getContext(), popularProductsModelList);
+        popularProductList = new ArrayList<>();
+        popularProductsAdapter = new PopularProductsAdapter(getContext(), popularProductList);
         popularProductsRecyclerView.setAdapter(popularProductsAdapter);
 
         db.collection("AllProducts")
@@ -154,8 +156,8 @@ public class HomeFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                PopularProductsModel popularProductsModel = document.toObject(PopularProductsModel.class);
-                                popularProductsModelList.add(popularProductsModel);
+                                Product popularProduct = document.toObject(Product.class);
+                                popularProductList.add(popularProduct);
                                 popularProductsAdapter.notifyDataSetChanged();
                             }
                         } else {

@@ -117,21 +117,21 @@
                 android:layout_margin="8dp">
 
                 <ImageView
-                    android:id="@+id/add_item"
+                    android:id="@+id/addItemBtn"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginRight="8dp"
                     android:src="@drawable/plus"/>
 
                 <TextView
-                    android:id="@+id/quantity"
+                    android:id="@+id/quantityLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1"
                     android:textSize="30sp"
                     android:textStyle="bold"/>
                 <ImageView
-                    android:id="@+id/remove_item"
+                    android:id="@+id/removeItemBtn"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="8dp"
@@ -142,7 +142,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/add_cart"
+        android:id="@+id/addCartBtn"
         app:layout_constraintVertical_bias="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -153,14 +153,14 @@
         android:text="ADD TO CART"
         android:textAllCaps="false"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buy"
+        app:layout_constraintBottom_toTopOf="@+id/buyBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardview"
         app:layout_constraintWidth_percent="0.8" />
 
     <Button
-        android:id="@+id/buy"
+        android:id="@+id/buyBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/blue_turquoise"

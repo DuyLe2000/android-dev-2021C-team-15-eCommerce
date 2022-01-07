@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="group15.finalassignment.ecommerce" >
+    package="group15.finalassignment.ecommerce">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -11,7 +11,10 @@
         android:label="RMIT Store"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ECommerce" >
+        android:theme="@style/Theme.ECommerce">
+        <activity
+            android:name=".View.order.OrderActivity"
+            android:exported="true" />
         <activity
             android:name=".View.DetailActivity"
             android:exported="false" />
@@ -31,8 +34,11 @@
             android:name=".View.WelcomeActivity"
             android:exported="true" />
         <activity
+            android:name=".View.CartActivity"
+            android:exported="true" />
+        <activity
             android:name=".View.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -15,13 +15,14 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import group15.finalassignment.ecommerce.R;
+import group15.finalassignment.ecommerce.View.model.Product;
 
 public class PopularProductsAdapter extends RecyclerView.Adapter<PopularProductsAdapter.ViewHolder> {
 
     private Context context;
-    private List<PopularProductsModel> list;
+    private List<Product> list;
 
-    public PopularProductsAdapter(Context context, List<PopularProductsModel> list) {
+    public PopularProductsAdapter(Context context, List<Product> list) {
         this.context = context;
         this.list = list;
     }

@@ -16,13 +16,14 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import group15.finalassignment.ecommerce.R;
+import group15.finalassignment.ecommerce.View.model.Product;
 
 public class NewProductsAdapter extends RecyclerView.Adapter<NewProductsAdapter.ViewHolder> {
 
     private Context context;
-    private List<NewProductsModel> list;
+    private List<Product> list;
 
-    public NewProductsAdapter(Context context, List<NewProductsModel> list) {
+    public NewProductsAdapter(Context context, List<Product> list) {
         this.context = context;
         this.list = list;
     }
