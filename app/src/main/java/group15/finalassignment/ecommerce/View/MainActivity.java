@@ -49,14 +49,15 @@ public class MainActivity extends AppCompatActivity {
         cartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CartActivity.class);
-                startActivity(intent);
+                if (auth.getCurrentUser() != null) {
+                    Intent intent = new Intent(MainActivity.this, CartActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
 
     private void loadFragment(Fragment homeFragment) {
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.home_container, homeFragment);
         transaction.commit();

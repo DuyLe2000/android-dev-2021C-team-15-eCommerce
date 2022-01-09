@@ -105,7 +105,7 @@ public class DetailActivity extends AppCompatActivity {
 
                 CartItem cartItem = new CartItem(product.getName(), quantity, quantity * product.getPrice());
                 db.collection("accounts")
-                        .document("0945731031")
+                        .document(auth.getCurrentUser().getEmail())
                         .update("cart", FieldValue.arrayUnion(cartItem))
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override

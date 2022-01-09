@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_admin_add_new_product.xml" value="0.2546875" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_cart.xml" value="0.2546875" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_detail.xml" value="0.2546875" />
-        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_login.xml" value="0.2105978260869565" />
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_login.xml" value="0.268" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_main.xml" value="0.2546875" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_order.xml" value="0.2546875" />
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_otp.xml" value="0.2546875" />
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_otp_enter_phone_number.xml" value="0.2546875" />
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_otp_verify.xml" value="0.2546875" />
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_product_detail.xml" value="0.2546875" />
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_register.xml" value="0.2546875" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_settins.xml" value="0.2546875" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_welcome.xml" value="0.2546875" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/fragment_home.xml" value="0.2546875" />

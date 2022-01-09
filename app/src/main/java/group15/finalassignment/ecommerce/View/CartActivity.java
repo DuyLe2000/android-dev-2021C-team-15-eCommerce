@@ -52,7 +52,7 @@ public class CartActivity extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == RESULT_OK) {
                         db.collection("accounts")
-                                .document("0945731031")
+                                .document(auth.getCurrentUser().getEmail())
                                 .update("cart", new ArrayList<Map<String, Object>>())
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -95,7 +95,7 @@ public class CartActivity extends AppCompatActivity {
         progressDialog.show();
 
         db.collection("accounts")
-                .document("0945731031")
+                .document(auth.getCurrentUser().getPhoneNumber())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override

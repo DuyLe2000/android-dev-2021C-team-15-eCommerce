@@ -69,7 +69,7 @@ public class OrderActivity extends AppCompatActivity {
                     progressDialog.show();
 
                     Order order = new Order();
-//                    order.setPhone(auth.getCurrentUser().getPhoneNumber());
+                    order.setEmail(auth.getCurrentUser().getEmail());
                     order.setAddress(editTextAddress.getText().toString());
                     order.setTotalCost(cart.getTotalCost());
                     order.setItemList(cart.getItemList());

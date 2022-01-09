@@ -3,26 +3,26 @@ package group15.finalassignment.ecommerce.View.model;
 import java.util.ArrayList;
 
 public class Order {
-    String phone = "";
+    String email = "";
     String address = "";
     Long totalCost = 0L;
     ArrayList<CartItem> itemList = new ArrayList<>();
 
     public Order () {}
 
-    public Order(String phone, String address, Long totalCost, ArrayList<CartItem> itemList) {
-        this.phone = phone;
+    public Order(String email, String address, Long totalCost, ArrayList<CartItem> itemList) {
+        this.email = email;
         this.address = address;
         this.totalCost = totalCost;
         this.itemList = itemList;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setEmail(String phone) {
+        this.email = phone;
     }
 
     public String getAddress() {
