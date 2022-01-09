@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db;
 
     Fragment homeFragment;
-    ImageButton profileBtn, cartBtn;
+    ImageButton profileBtn, cartBtn, searchBtn;
 
 
     @Override
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         profileBtn = (ImageButton) findViewById(R.id.profileBtn);
         cartBtn = (ImageButton) findViewById(R.id.cartBtn);
+        searchBtn = findViewById(R.id.searchBtn);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -52,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, CartActivity.class);
                 startActivity(intent);
             }
+        });
+
+        searchBtn.setOnClickListener(view -> {
+            Intent i = new Intent(MainActivity.this, SearchProductActivity.class);
+            startActivity(i);
         });
     }
 

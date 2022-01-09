@@ -55,6 +55,9 @@
         <entry key="..\:/Users/Phu Nguyen/Desktop/android-dev-2021C-team-15-eCommerce-master/app/src/main/res/layout/new_products_list.xml" value="0.1125" />
         <entry key="..\:/Users/Phu Nguyen/Desktop/android-dev-2021C-team-15-eCommerce-master/app/src/main/res/layout/popular_products_list.xml" value="0.1125" />
         <entry key="..\:/Users/Phu Nguyen/Desktop/android-dev-2021C-team-15-eCommerce-master/app/src/main/res/layout/product_items_layout.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/font/nunito_bold.xml" value="0.2604166666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/activity_search_product.xml" value="0.335" />
       </map>
     </option>
   </component>
