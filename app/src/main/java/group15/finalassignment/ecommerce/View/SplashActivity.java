@@ -16,11 +16,11 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent moveToMainActivity = new Intent(SplashActivity.this, WelcomeActivity.class);
-                startActivity(moveToMainActivity);
+                Intent moveToOnBoardingScreenActivity = new Intent(SplashActivity.this, OnBoardingScreenActivity.class);
+                startActivity(moveToOnBoardingScreenActivity);
                 finish();
             }
-        }, 4000);
+        }, 3000);
 
     }
 

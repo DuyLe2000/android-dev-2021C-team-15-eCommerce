@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
+            android:name=".View.OnBoardingScreenActivity"
+            android:exported="true" />
+        <activity
             android:name=".View.SearchProductActivity"
             android:exported="true" />
         <activity
