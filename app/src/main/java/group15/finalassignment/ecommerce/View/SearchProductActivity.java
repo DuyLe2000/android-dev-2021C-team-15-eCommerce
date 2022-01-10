@@ -6,16 +6,20 @@ import group15.finalassignment.ecommerce.R;
 import group15.finalassignment.ecommerce.View.model.Product;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -48,27 +52,38 @@ public class SearchProductActivity extends AppCompatActivity {
 
     LinearLayout resultArea = findViewById(R.id.displayArea);
 
-    for (int i = 0; i < 3; i++) {
-      resultArea.addView(createProductCard(testProduct));
-    }
 
+    ImageButton searchBtn = findViewById(R.id.button);
+    EditText searchField = findViewById(R.id.search_field);
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    db.collection("AllProducts")
-            .get()
-            .addOnCompleteListener(task -> {
-              if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-//                    CategoryModel categoryModel = document.toObject(CategoryModel.class);
-//                    categoryModelList.add(categoryModel);
-//                    categoryAdapter.notifyDataSetChanged();
 
-                  Product product = document.toObject(Product.class);
-                  resultArea.addView(createProductCard(product));
-                }
-              } else {
-                Toast.makeText(SearchProductActivity.this, "Error", Toast.LENGTH_SHORT).show();
-              }
-            });
+
+    searchBtn.setOnClickListener(view -> {
+      String searchName = String.valueOf(searchField.getText());
+
+      if (searchName.isEmpty()) {
+        Toast.makeText(SearchProductActivity.this, "Please do not leave empty field", Toast.LENGTH_SHORT).show();
+      } else {
+        db.collection("AllProducts")
+                //.whereEqualTo("name", searchName)
+                .whereGreaterThanOrEqualTo("name", searchName)
+                .whereLessThanOrEqualTo("name", searchName + "\\uf8ff")
+                .get()
+                .addOnCompleteListener(task -> {
+                  if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+
+                      Product product = document.toObject(Product.class);
+                      resultArea.removeAllViews();
+                      resultArea.addView(createProductCard(product));
+                    }
+                  } else {
+                    Toast.makeText(SearchProductActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                  }
+                });
+      }
+    });
+
   }
 
 
@@ -97,6 +112,7 @@ public class SearchProductActivity extends AppCompatActivity {
     RelativeLayout.LayoutParams layoutParamsForImg = new RelativeLayout.LayoutParams(200, 200);
     productImg.setLayoutParams(layoutParamsForImg);
     productImg.setImageResource(R.drawable.sample);
+    Glide.with(SearchProductActivity.this).load(product.getImage_url()).into(productImg);
 
 
     // Add Linear Layout to contain product info
@@ -119,7 +135,7 @@ public class SearchProductActivity extends AppCompatActivity {
     productName.setLayoutParams(lpForName);
     productName.setTextColor(Color.parseColor("#000000"));
     productName.setTextSize(25);
-    productName.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+    //productName.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
     productName.setText(product.getName());
 
 
@@ -147,7 +163,7 @@ public class SearchProductActivity extends AppCompatActivity {
     lpForPriceValue.setMarginStart(30);
     priceValue.setLayoutParams(lpForPriceValue);
     priceValue.setTextSize(22);
-    priceValue.setText(String.valueOf(product.getPrice()));
+    priceValue.setText("$" + String.valueOf(product.getPrice()));
 
 
     // Add everything up
@@ -159,6 +175,14 @@ public class SearchProductActivity extends AppCompatActivity {
 
     productCard.addView(productImg);
     productCard.addView(infoContainer);
+
+    productCard.setOnClickListener(view -> {
+      Intent intent = new Intent(SearchProductActivity.this, DetailActivity.class);
+      intent.putExtra("detail", product);
+      startActivity(intent);
+      // finish();
+      Toast.makeText(SearchProductActivity.this, product.getName() + " clicked!", Toast.LENGTH_SHORT).show();
+    });
 
     return productCard;
   }

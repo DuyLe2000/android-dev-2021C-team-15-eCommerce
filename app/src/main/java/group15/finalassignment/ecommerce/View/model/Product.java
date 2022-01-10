@@ -7,17 +7,29 @@ public class Product implements Serializable {
     String description;
     String name;
     String rating;
+    String category;
     Long price;
 
     public Product() {
     }
 
-    public Product(String image_url, String description, String name, String rating, Long price) {
+
+
+    public Product(String image_url, String description, String name, String rating, String category, Long price) {
         this.image_url = image_url;
         this.description = description;
         this.name = name;
         this.rating = rating;
         this.price = price;
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getImage_url() {
