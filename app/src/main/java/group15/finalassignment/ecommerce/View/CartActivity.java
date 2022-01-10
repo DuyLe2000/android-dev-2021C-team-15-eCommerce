@@ -95,7 +95,7 @@ public class CartActivity extends AppCompatActivity {
         progressDialog.show();
 
         db.collection("accounts")
-                .document(auth.getCurrentUser().getPhoneNumber())
+                .document(auth.getCurrentUser().getEmail())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override

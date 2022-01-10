@@ -1,5 +1,9 @@
 package group15.finalassignment.ecommerce.View;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,6 +25,31 @@ public class MainActivity extends AppCompatActivity {
     Fragment homeFragment;
     ImageButton profileBtn, cartBtn, searchBtn;
 
+    private final ActivityResultLauncher<Intent> registerOrLogin = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        if (auth.getCurrentUser() != null) {
+                            cartBtn.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            });
+
+    private final ActivityResultLauncher<Intent> viewProfile = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        if (auth.getCurrentUser() == null) {
+                            cartBtn.setVisibility(View.GONE);
+                        }
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +66,19 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        if (auth.getCurrentUser() != null) {
+            cartBtn.setVisibility(View.VISIBLE);
+        }
+
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (auth.getCurrentUser() == null) {
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(intent);
+                    Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+                    registerOrLogin.launch(intent);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
+                    viewProfile.launch(intent);
                 }
             }
         });

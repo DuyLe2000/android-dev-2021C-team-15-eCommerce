@@ -69,8 +69,8 @@ public class OnBoardingScreenActivity extends AppCompatActivity{
         mFinishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent moveToWelcomeActivity = new Intent(OnBoardingScreenActivity.this,WelcomeActivity.class);
-                startActivity(moveToWelcomeActivity);
+                Intent moveToMainActivity = new Intent(OnBoardingScreenActivity.this, MainActivity.class);
+                startActivity(moveToMainActivity);
                 finish();
             }
         });

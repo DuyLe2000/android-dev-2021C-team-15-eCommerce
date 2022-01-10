@@ -25,7 +25,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == RESULT_OK) {
-                        goToMainActivity();
+                        setResult(RESULT_OK);
+                        finish();
                     }
                 }
             });
@@ -63,19 +64,10 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                goToMainActivity();
+                setResult(RESULT_OK);
+                finish();
             }
         });
 
     }
-
-    private void goToMainActivity() {
-        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-        //kill previous activities
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        Toast.makeText(WelcomeActivity.this, "Welcome to the Team 15 Ecommerce App!", Toast.LENGTH_SHORT).show();
-        finish();
-    }
-
 }
