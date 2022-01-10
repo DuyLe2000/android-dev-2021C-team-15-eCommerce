@@ -57,7 +57,8 @@ public class OrderActivity extends AppCompatActivity {
             cart = (Cart) object;
         }
 
-        totalCostLabel.setText(String.valueOf(cart.getTotalCost()));
+        String costText = "$" + String.valueOf(cart.getTotalCost());
+        totalCostLabel.setText(costText);
         fetchAddress();
         confirmOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override

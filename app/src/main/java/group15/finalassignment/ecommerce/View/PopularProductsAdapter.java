@@ -1,6 +1,7 @@
 package group15.finalassignment.ecommerce.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,14 @@ public class PopularProductsAdapter extends RecyclerView.Adapter<PopularProducts
         holder.popularName.setText(list.get(position).getName());
         holder.popularPrice.setText(String.valueOf(list.get(position).getPrice()));
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("detail", list.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

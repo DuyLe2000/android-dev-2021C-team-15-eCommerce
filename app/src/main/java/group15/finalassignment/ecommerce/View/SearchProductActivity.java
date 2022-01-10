@@ -60,6 +60,7 @@ public class SearchProductActivity extends AppCompatActivity {
 
     searchBtn.setOnClickListener(view -> {
       String searchName = String.valueOf(searchField.getText());
+      System.out.println(searchName);
 
       if (searchName.isEmpty()) {
         Toast.makeText(SearchProductActivity.this, "Please do not leave empty field", Toast.LENGTH_SHORT).show();
