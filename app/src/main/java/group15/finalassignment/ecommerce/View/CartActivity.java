@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -81,9 +82,11 @@ public class CartActivity extends AppCompatActivity {
         checkoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CartActivity.this, OrderActivity.class);
-                intent.putExtra("cart", cart);
-                checkout.launch(intent);
+                if (!cart.getItemList().isEmpty()) {
+                    Intent intent = new Intent(CartActivity.this, OrderActivity.class);
+                    intent.putExtra("cart", cart);
+                    checkout.launch(intent);
+                }
             }
         });
     }
@@ -105,11 +108,38 @@ public class CartActivity extends AppCompatActivity {
                             cart = new Cart();
                             cart.mapCartItemListFromDocument((ArrayList<HashMap<String, Object>>) document.get("cart"));
                             createCartView();
-                            cartTotalCost.setText(String.valueOf(cart.getTotalCost()));
+
+                            String totalCostText = "$" + String.valueOf(cart.getTotalCost());
+                            cartTotalCost.setText(totalCostText);
                         } else {
                             Toast.makeText(CartActivity.this, "Fail to fetch cart", Toast.LENGTH_SHORT).show();
                         }
                         progressDialog.dismiss();
+                    }
+                });
+    }
+
+    private void removeItem(CartItem cartItem, LinearLayout layout) {
+        progressDialog = new ProgressDialog(CartActivity.this);
+        progressDialog.setMessage("Loading cart!");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
+        db.collection("accounts")
+                .document(auth.getCurrentUser().getEmail())
+                .update("cart", FieldValue.arrayRemove(cartItem))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        progressDialog.dismiss();
+                        if (task.isSuccessful()) {
+                            cart.getItemList().remove(cartItem);
+                            cartItemLayout.removeView(layout);
+                            String totalCostText = "$" + String.valueOf(cart.getTotalCost());
+                            cartTotalCost.setText(totalCostText);
+                        } else {
+                            Toast.makeText(CartActivity.this, "Failed to remove", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
     }
@@ -124,12 +154,13 @@ public class CartActivity extends AppCompatActivity {
     private LinearLayout createCartItemView(CartItem cartItem) {
         LinearLayout cartItemLayout = new LinearLayout(CartActivity.this);
         cartItemLayout.setOrientation(LinearLayout.HORIZONTAL);
+        cartItemLayout.setWeightSum(6f);
 
         TextView itemName = new TextView(CartActivity.this);
         itemName.setText(cartItem.getProductName());
         itemName.setTextSize(18);
         itemName.setTextColor(Color.parseColor("#373b54"));
-        itemName.setPadding(3, 3, 0, 3);
+        itemName.setPadding(10, 5, 0, 5);
         itemName.setLayoutParams(new LinearLayout.LayoutParams(
                 0,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -142,7 +173,7 @@ public class CartActivity extends AppCompatActivity {
         quantity.setTextSize(18);
         quantity.setTextColor(Color.parseColor("#373b54"));
         quantity.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        quantity.setPadding(0, 3, 0, 3);
+        quantity.setPadding(0, 5, 0, 5);
         quantity.setLayoutParams(new LinearLayout.LayoutParams(
                 0,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -156,13 +187,30 @@ public class CartActivity extends AppCompatActivity {
         totalCost.setTextSize(18);
         totalCost.setTextColor(Color.parseColor("#373b54"));
         totalCost.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        totalCost.setPadding(0, 3, 0, 3);
+        totalCost.setPadding(0, 5, 0, 5);
         totalCost.setLayoutParams(new LinearLayout.LayoutParams(
                 0,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 1f
         ));
         cartItemLayout.addView(totalCost);
+
+        ImageView imageView = new ImageView(CartActivity.this);
+        imageView.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
+        imageView.setPadding(0, 5, 0, 5);
+        imageView.setLayoutParams(new LinearLayout.LayoutParams(
+                0,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                1f
+        ));
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeItem(cartItem, cartItemLayout);
+            }
+        });
+
+        cartItemLayout.addView(imageView);
         return cartItemLayout;
     }
 }

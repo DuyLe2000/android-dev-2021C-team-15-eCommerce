@@ -174,7 +174,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private void buyItem() {
         Cart cart = new Cart();
-        cart.getItemList().add(new CartItem(product.getName(), quantity, product.getPrice()));
+        cart.getItemList().add(new CartItem(product.getName(), quantity, quantity * product.getPrice()));
 
         Intent intent = new Intent(DetailActivity.this, OrderActivity.class);
         intent.putExtra("cart", cart);
