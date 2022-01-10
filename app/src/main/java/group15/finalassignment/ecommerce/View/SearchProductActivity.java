@@ -59,7 +59,7 @@ public class SearchProductActivity extends AppCompatActivity {
 
 
     searchBtn.setOnClickListener(view -> {
-      String searchName = String.valueOf(searchField.getText());
+      String searchName = searchField.getText().toString();
 
       if (searchName.isEmpty()) {
         Toast.makeText(SearchProductActivity.this, "Please do not leave empty field", Toast.LENGTH_SHORT).show();
@@ -67,7 +67,7 @@ public class SearchProductActivity extends AppCompatActivity {
         db.collection("AllProducts")
                 //.whereEqualTo("name", searchName)
                 .whereGreaterThanOrEqualTo("name", searchName)
-                .whereLessThanOrEqualTo("name", searchName + "\\uf8ff")
+                .whereLessThanOrEqualTo("name", searchName + "\\uF7FF")
                 .get()
                 .addOnCompleteListener(task -> {
                   if (task.isSuccessful()) {
@@ -109,7 +109,7 @@ public class SearchProductActivity extends AppCompatActivity {
     // Add product image
     ImageView productImg = new ImageView(SearchProductActivity.this);
     productImg.setBackground(Drawable.createFromPath(product.getImage_url()));
-    RelativeLayout.LayoutParams layoutParamsForImg = new RelativeLayout.LayoutParams(200, 200);
+    LinearLayout.LayoutParams layoutParamsForImg = new LinearLayout.LayoutParams(350, 350);
     productImg.setLayoutParams(layoutParamsForImg);
     productImg.setImageResource(R.drawable.sample);
     Glide.with(SearchProductActivity.this).load(product.getImage_url()).into(productImg);
@@ -155,7 +155,6 @@ public class SearchProductActivity extends AppCompatActivity {
 
 
     TextView priceValue = new TextView(SearchProductActivity.this);
-    priceValue.setTextSize(product.getPrice());
     LinearLayout.LayoutParams lpForPriceValue = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
@@ -166,12 +165,72 @@ public class SearchProductActivity extends AppCompatActivity {
     priceValue.setText("$" + String.valueOf(product.getPrice()));
 
 
+    // Add product category
+    LinearLayout categoryContainer = new LinearLayout(SearchProductActivity.this);
+    LinearLayout.LayoutParams lpForCategoryContainer = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+    );
+    categoryContainer.setLayoutParams(lpForCategoryContainer);
+    categoryContainer.setOrientation(LinearLayout.HORIZONTAL);
+
+
+    TextView categoryLabel = new TextView(SearchProductActivity.this);
+    categoryLabel.setText("Category:");
+    categoryLabel.setTextSize(22);
+
+
+    TextView categoryValue = new TextView(SearchProductActivity.this);
+    LinearLayout.LayoutParams lpForCategoryValue = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+    );
+    lpForCategoryValue.setMarginStart(30);
+    categoryValue.setLayoutParams(lpForCategoryValue);
+    categoryValue.setTextSize(22);
+    categoryValue.setText(product.getCategory());
+
+
+    // Add rating
+    LinearLayout ratingContainer = new LinearLayout(SearchProductActivity.this);
+    LinearLayout.LayoutParams lpForRatingContainer = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+    );
+    ratingContainer.setLayoutParams(lpForRatingContainer);
+    ratingContainer.setOrientation(LinearLayout.HORIZONTAL);
+
+
+    TextView ratingLabel = new TextView(SearchProductActivity.this);
+    ratingLabel.setText("Rating:");
+    ratingLabel.setTextSize(22);
+
+
+    TextView ratingValue = new TextView(SearchProductActivity.this);
+    LinearLayout.LayoutParams lpForRatingValue = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+    );
+    lpForRatingValue.setMarginStart(30);
+    ratingValue.setLayoutParams(lpForRatingValue);
+    ratingValue.setTextSize(22);
+    ratingValue.setText(String.valueOf(product.getRating()));
+
+
     // Add everything up
     priceContainer.addView(priceLabel);
     priceContainer.addView(priceValue);
 
+    categoryContainer.addView(categoryLabel);
+    categoryContainer.addView(categoryValue);
+
+    ratingContainer.addView(ratingLabel);
+    ratingContainer.addView(ratingValue);
+
     infoContainer.addView(productName);
     infoContainer.addView(priceContainer);
+    infoContainer.addView(categoryContainer);
+    infoContainer.addView(ratingContainer);
 
     productCard.addView(productImg);
     productCard.addView(infoContainer);
