@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -57,6 +58,7 @@ public class OrderActivity extends AppCompatActivity {
         }
 
         totalCostLabel.setText(String.valueOf(cart.getTotalCost()));
+        fetchAddress();
         confirmOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,5 +94,22 @@ public class OrderActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void fetchAddress() {
+        db.collection("accounts")
+                .document(auth.getCurrentUser().getEmail())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            editTextAddress.setText(document.getString("address"));
+                        } else {
+                            Toast.makeText(OrderActivity.this, "Unable to fetch address", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }

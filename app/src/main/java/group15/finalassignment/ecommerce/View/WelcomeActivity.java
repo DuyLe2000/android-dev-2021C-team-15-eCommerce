@@ -64,7 +64,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                setResult(RESULT_OK);
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });

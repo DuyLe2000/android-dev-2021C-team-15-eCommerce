@@ -66,10 +66,6 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        if (auth.getCurrentUser() != null) {
-            cartBtn.setVisibility(View.VISIBLE);
-        }
-
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +93,15 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, SearchProductActivity.class);
             startActivity(i);
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (auth.getCurrentUser() != null) {
+            cartBtn.setVisibility(View.VISIBLE);
+        }
     }
 
     private void loadFragment(Fragment homeFragment) {

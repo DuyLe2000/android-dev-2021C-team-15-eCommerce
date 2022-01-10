@@ -1,5 +1,9 @@
 package group15.finalassignment.ecommerce.View;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,11 +38,34 @@ public class DetailActivity extends AppCompatActivity {
     TextView name, description, price, rating, quantityLabel;
     Button addCartBtn, buyBtn;
     ProgressDialog progressDialog;
+    RatingBar ratingBar;
 
     Long quantity = 1L;
 
     // New Products
     Product product;
+
+    private final ActivityResultLauncher<Intent> registerOrLoginBuy = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        buyItem();
+                    }
+                }
+            });
+
+    private final ActivityResultLauncher<Intent> registerOrLoginAddCart = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        addCart();
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +90,17 @@ public class DetailActivity extends AppCompatActivity {
         addItemBtn = findViewById(R.id.addItemBtn);
         removeItemBtn = findViewById(R.id.removeItemBtn);
         quantityLabel = findViewById(R.id.quantityLabel);
+        ratingBar = findViewById(R.id.rating);
 
         // New Products
         if (product != null) {
             Glide.with(getApplicationContext()).load(product.getImage_url()).into(detailImg);
             name.setText(product.getName());
             description.setText(product.getDescription());
-            price.setText(String.valueOf(product.getPrice()));
-            rating.setText(product.getRating());
+            String priceText = "$" + String.valueOf(product.getPrice());
+            price.setText(priceText);
+            rating.setText(String.valueOf(product.getRating()));
+            ratingBar.setRating(product.getRating().floatValue());
         }
 
         // Button action
@@ -94,46 +125,59 @@ public class DetailActivity extends AppCompatActivity {
         addCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // When user is signed out, ask to sign in
                 if (auth.getCurrentUser() == null) {
-                    Toast.makeText(DetailActivity.this, "User must sign in!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DetailActivity.this, WelcomeActivity.class);
+                    registerOrLoginAddCart.launch(intent);
                     return;
                 }
-                progressDialog = new ProgressDialog(DetailActivity.this);
-                progressDialog.setMessage("Adding order to cart!");
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.show();
 
-                CartItem cartItem = new CartItem(product.getName(), quantity, quantity * product.getPrice());
-                db.collection("accounts")
-                        .document(auth.getCurrentUser().getEmail())
-                        .update("cart", FieldValue.arrayUnion(cartItem))
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                progressDialog.dismiss();
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(DetailActivity.this, "Cart item add successfully", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                addCart();
             }
         });
 
         buyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // When user is signed out, ask to sign in
                 if (auth.getCurrentUser() == null) {
-                    Toast.makeText(DetailActivity.this, "User must sign in!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DetailActivity.this, WelcomeActivity.class);
+                    registerOrLoginBuy.launch(intent);
                     return;
                 }
 
-                Cart cart = new Cart();
-                cart.getItemList().add(new CartItem(product.getName(), quantity, product.getPrice()));
-
-                Intent intent = new Intent(DetailActivity.this, OrderActivity.class);
-                intent.putExtra("cart", cart);
-                startActivity(intent);
+                buyItem();
             }
         });
+    }
+
+    private void addCart() {
+        progressDialog = new ProgressDialog(DetailActivity.this);
+        progressDialog.setMessage("Adding order to cart!");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
+        CartItem cartItem = new CartItem(product.getName(), quantity, quantity * product.getPrice());
+        db.collection("accounts")
+                .document(auth.getCurrentUser().getEmail())
+                .update("cart", FieldValue.arrayUnion(cartItem))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        progressDialog.dismiss();
+                        if (task.isSuccessful()) {
+                            Toast.makeText(DetailActivity.this, "Cart item add successfully", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void buyItem() {
+        Cart cart = new Cart();
+        cart.getItemList().add(new CartItem(product.getName(), quantity, product.getPrice()));
+
+        Intent intent = new Intent(DetailActivity.this, OrderActivity.class);
+        intent.putExtra("cart", cart);
+        startActivity(intent);
     }
 }

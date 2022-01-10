@@ -6,17 +6,19 @@ public class Product implements Serializable {
     String image_url;
     String description;
     String name;
-    String rating;
+    Double rating;
+    String category;
     Long price;
 
     public Product() {
     }
 
-    public Product(String image_url, String description, String name, String rating, Long price) {
+    public Product(String image_url, String description, String name, Double rating, String category,Long price) {
         this.image_url = image_url;
         this.description = description;
         this.name = name;
         this.rating = rating;
+        this.category = category;
         this.price = price;
     }
 
@@ -44,12 +46,20 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public String getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Long getPrice() {

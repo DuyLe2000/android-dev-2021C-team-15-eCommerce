@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -135,6 +136,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void onClickVerifyPhoneNumber(String phoneNum) {
+        ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
+        progressDialog.setMessage("Waiting for phone number verification!");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber(phoneNum)       // Phone number to verify
                         .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
@@ -142,12 +148,14 @@ public class RegisterActivity extends AppCompatActivity {
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                progressDialog.dismiss();
                                 isPhoneVerified = true;
                                 register();
                             }
 
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
+                                progressDialog.dismiss();
                                 e.printStackTrace();
                                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
                                     mPhoneNum.setError("Invalid phone number!");
@@ -158,6 +166,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             @Override
                             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                progressDialog.dismiss();
                                 super.onCodeSent(verificationId, forceResendingToken);
                                 goToOptActivity(phoneNum, verificationId);
                             }
@@ -175,6 +184,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void addAccount(Task<AuthResult> task) {
+        ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
+        progressDialog.setMessage("Creating user account!");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
         Map<String, Object> newUser = new HashMap<>();
         newUser.put("email", task.getResult().getUser().getEmail());
         newUser.put("name", name);
@@ -188,6 +202,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
+                        progressDialog.dismiss();
                         Intent intent = new Intent(RegisterActivity.this, WelcomeActivity.class);
                         setResult(RESULT_OK, intent);
                         finish();
@@ -196,6 +211,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
                         Toast.makeText(RegisterActivity.this, "Unable to add user to db", Toast.LENGTH_SHORT).show();
                     }
                 });
