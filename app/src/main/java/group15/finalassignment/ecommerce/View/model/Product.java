@@ -20,6 +20,15 @@ public class Product implements Serializable {
         this.rating = rating;
         this.category = category;
         this.price = price;
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getImage_url() {
