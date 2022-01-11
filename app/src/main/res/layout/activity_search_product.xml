@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/heading_label"
         android:layout_alignStart="@+id/heading_label"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="13dp"
         android:background="@drawable/input_desgin1"
         android:ems="14"
@@ -41,12 +41,13 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="39dp"
-        android:layout_below="@+id/heading_label"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="22dp"
+        android:layout_alignTop="@+id/search_field"
+        android:layout_alignBottom="@+id/search_field"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="1dp"
         android:layout_toEndOf="@+id/search_field"
         android:background="@drawable/ic_search_product" />
 
@@ -54,112 +55,113 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/button"
+        android:layout_below="@+id/search_field"
+        android:layout_marginTop="-1dp"
         tools:ignore="SpeakableTextPresentCheck">
 
-<!--        <RelativeLayout-->
-<!--            android:id="@+id/productCard"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
+        <!--        <RelativeLayout-->
+        <!--            android:id="@+id/productCard"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content">-->
 
-<!--            <ImageView-->
-<!--                android:id="@+id/list_product_image"-->
-<!--                android:layout_width="90dp"-->
-<!--                android:layout_height="90dp"-->
-<!--                android:layout_marginLeft="30dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                app:srcCompat="@drawable/sample" />-->
+        <!--            <ImageView-->
+        <!--                android:id="@+id/list_product_image"-->
+        <!--                android:layout_width="90dp"-->
+        <!--                android:layout_height="90dp"-->
+        <!--                android:layout_marginLeft="30dp"-->
+        <!--                android:layout_marginTop="20dp"-->
+        <!--                app:srcCompat="@drawable/sample" />-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/list_product_name"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentTop="true"-->
+        <!--            <TextView-->
+        <!--                android:id="@+id/list_product_name"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_alignParentTop="true"-->
 
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="26dp"-->
-<!--                android:layout_marginRight="20dp"-->
-<!--                android:layout_toEndOf="@+id/list_product_image"-->
-<!--                android:fontFamily="@font/nunito_bold"-->
-<!--                android:text="Bitis Hunter"-->
-<!--                android:textColor="#555555"-->
-<!--                android:textSize="16sp" />-->
+        <!--                android:layout_marginLeft="20dp"-->
+        <!--                android:layout_marginTop="26dp"-->
+        <!--                android:layout_marginRight="20dp"-->
+        <!--                android:layout_toEndOf="@+id/list_product_image"-->
+        <!--                android:fontFamily="@font/nunito_bold"-->
+        <!--                android:text="Bitis Hunter"-->
+        <!--                android:textColor="#555555"-->
+        <!--                android:textSize="16sp" />-->
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/linear1"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/list_product_name"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:layout_marginRight="30dp"-->
-<!--                android:layout_toEndOf="@+id/list_product_image"-->
-<!--                android:gravity="center"-->
-<!--                android:orientation="horizontal">-->
-
-
-<!--                <TextView-->
-<!--                    android:id="@+id/list_productPrice"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="$"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#ff5e00"-->
-<!--                    android:textSize="14sp" />-->
-
-<!--                <TextView-->
-
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="2dp"-->
-<!--                    android:fontFamily="@font/nunito_semibold"-->
-<!--                    android:text="1"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#999999"-->
-<!--                    android:textSize="14sp" />-->
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/linear1"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_below="@+id/list_product_name"-->
+        <!--                android:layout_marginLeft="20dp"-->
+        <!--                android:layout_marginTop="8dp"-->
+        <!--                android:layout_marginRight="30dp"-->
+        <!--                android:layout_toEndOf="@+id/list_product_image"-->
+        <!--                android:gravity="center"-->
+        <!--                android:orientation="horizontal">-->
 
 
-<!--            </LinearLayout>-->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/list_productPrice"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="$"-->
+        <!--                    android:textAlignment="center"-->
+        <!--                    android:textColor="#ff5e00"-->
+        <!--                    android:textSize="14sp" />-->
+
+        <!--                <TextView-->
+
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="2dp"-->
+        <!--                    android:fontFamily="@font/nunito_semibold"-->
+        <!--                    android:text="1"-->
+        <!--                    android:textAlignment="center"-->
+        <!--                    android:textColor="#999999"-->
+        <!--                    android:textSize="14sp" />-->
 
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/categoryContainer"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/linear1"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:layout_marginRight="30dp"-->
-<!--                android:layout_toEndOf="@+id/list_product_image"-->
-<!--                android:gravity="center"-->
-<!--                android:orientation="horizontal">-->
+        <!--            </LinearLayout>-->
 
 
-<!--                <TextView-->
-<!--                    android:id="@+id/list_productCategory"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Category:"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#999999"-->
-<!--                    android:textSize="14sp" />-->
-
-<!--                <TextView-->
-
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="2dp"-->
-<!--                    android:fontFamily="@font/nunito_semibold"-->
-<!--                    android:text="Shoes"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="#999999"-->
-<!--                    android:textSize="14sp" />-->
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/categoryContainer"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_below="@+id/linear1"-->
+        <!--                android:layout_marginLeft="20dp"-->
+        <!--                android:layout_marginTop="8dp"-->
+        <!--                android:layout_marginRight="30dp"-->
+        <!--                android:layout_toEndOf="@+id/list_product_image"-->
+        <!--                android:gravity="center"-->
+        <!--                android:orientation="horizontal">-->
 
 
-<!--            </LinearLayout>-->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/list_productCategory"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="Category:"-->
+        <!--                    android:textAlignment="center"-->
+        <!--                    android:textColor="#999999"-->
+        <!--                    android:textSize="14sp" />-->
+
+        <!--                <TextView-->
+
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="2dp"-->
+        <!--                    android:fontFamily="@font/nunito_semibold"-->
+        <!--                    android:text="Shoes"-->
+        <!--                    android:textAlignment="center"-->
+        <!--                    android:textColor="#999999"-->
+        <!--                    android:textSize="14sp" />-->
 
 
-<!--        </RelativeLayout>-->
+        <!--            </LinearLayout>-->
+
+
+        <!--        </RelativeLayout>-->
 
         <LinearLayout
             android:id="@+id/displayArea"

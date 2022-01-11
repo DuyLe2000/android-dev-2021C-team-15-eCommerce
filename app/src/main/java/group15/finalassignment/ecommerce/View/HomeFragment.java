@@ -1,6 +1,7 @@
 package group15.finalassignment.ecommerce.View;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
@@ -57,6 +59,8 @@ public class HomeFragment extends Fragment {
     // Firestore
     FirebaseFirestore db;
 
+    TextView viewAllProduct;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -84,6 +88,7 @@ public class HomeFragment extends Fragment {
         progressDialog.setMessage("Please wait for us to server u!");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+
         // Image Slider
         ImageSlider imageSlider = root.findViewById(R.id.image_slider);
         List<SlideModel> slideModels = new ArrayList<>();
@@ -99,6 +104,16 @@ public class HomeFragment extends Fragment {
         categoryModelList = new ArrayList<>();
         categoryAdapter = new CategoryAdapter(getContext(), categoryModelList);
         catRecyclerView.setAdapter(categoryAdapter);
+        viewAllProduct = (TextView) root.findViewById(R.id.category_see_all);
+
+        viewAllProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(container.getContext(), SearchProductActivity.class);
+                intent.putExtra("category", "");
+                startActivity(intent);
+            }
+        });
 
         db.collection("Category")
                 .get()

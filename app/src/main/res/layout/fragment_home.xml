@@ -44,7 +44,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/amethysta"
                 android:gravity="end"
-                android:text="See All"
+                android:text="View All Product"
                 android:textColor="@color/pink"
                 android:textSize="18sp"
                 android:textStyle="bold" />

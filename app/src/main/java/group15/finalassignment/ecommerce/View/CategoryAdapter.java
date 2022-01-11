@@ -1,6 +1,7 @@
 package group15.finalassignment.ecommerce.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         Glide.with(context).load(list.get(position).getImage_url()).into(holder.catImg);
         holder.catName.setText(list.get(position).getName());
 
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SearchProductActivity.class);
+                intent.putExtra("category", list.get(position).getType());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
