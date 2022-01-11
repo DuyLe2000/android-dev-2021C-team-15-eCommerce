@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -29,6 +30,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -37,9 +40,11 @@ public class SearchProductActivity extends AppCompatActivity {
 
     ImageButton searchBtn;
     EditText searchField;
-    LinearLayout resultArea;
+    LinearLayout resultArea, categoryContainer;
 
     String category, searchName = "";
+    List<CategoryModel> categoryList = new ArrayList<>();
+    TextView selectedCategoryView;
 
     /**
      * On Create method
@@ -57,7 +62,9 @@ public class SearchProductActivity extends AppCompatActivity {
         resultArea = findViewById(R.id.displayArea);
         searchBtn = findViewById(R.id.button);
         searchField = findViewById(R.id.search_field);
+        categoryContainer = findViewById(R.id.categoryFilterContainer);
 
+        fetchCategory();
         fetchProduct();
 
         searchBtn.setOnClickListener(view -> {
@@ -269,5 +276,80 @@ public class SearchProductActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void displayCategory() {
+        for (CategoryModel categoryModel:categoryList) {
+            TextView categoryView = new TextView(SearchProductActivity.this);
+            categoryView.setText(categoryModel.getType());
+            categoryView.setTextSize(18f);
+            categoryView.setPadding(30, 10, 30, 10);
+            categoryView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            if (category.equals(categoryModel.getType())) {
+                selectedCategoryView = categoryView;
+                categoryView.setBackgroundResource(R.drawable.category_filter_selected);
+                categoryView.setTextColor(Color.WHITE);
+            } else {
+                categoryView.setBackgroundResource(R.drawable.category_filter_default);
+                categoryView.setTextColor(Color.BLACK);
+            }
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(10, 10, 10, 10);
+            categoryView.setLayoutParams(params);
+
+            categoryView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (selectedCategoryView == null) {
+                        categoryView.setBackgroundResource(R.drawable.category_filter_selected);
+                        categoryView.setTextColor(Color.WHITE);
+                        selectedCategoryView = categoryView;
+                        category = categoryModel.getType();
+                    } else if (selectedCategoryView.equals(categoryView)) {
+                        selectedCategoryView.setBackgroundResource(R.drawable.category_filter_default);
+                        selectedCategoryView.setTextColor(Color.BLACK);
+                        selectedCategoryView = null;
+                        category = "";
+                    } else {
+                        selectedCategoryView.setBackgroundResource(R.drawable.category_filter_default);
+                        selectedCategoryView.setTextColor(Color.BLACK);
+
+                        categoryView.setBackgroundResource(R.drawable.category_filter_selected);
+                        categoryView.setTextColor(Color.WHITE);
+                        selectedCategoryView = categoryView;
+                        category = categoryModel.getType();
+                    }
+                    searchName = "";
+                    searchField.setText("");
+                    fetchProduct();
+                }
+            });
+
+            categoryContainer.addView(categoryView);
+        }
+    }
+
+    private void fetchCategory() {
+        db.collection("Category")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                CategoryModel categoryModel = document.toObject(CategoryModel.class);
+                                categoryList.add(categoryModel);
+                            }
+                            displayCategory();
+                        } else {
+                            Toast.makeText(SearchProductActivity.this, "Failed to fetch category", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
     }
 }

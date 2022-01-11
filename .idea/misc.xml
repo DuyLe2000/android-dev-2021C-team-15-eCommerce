@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/drawable-v24/card_background.xml" value="0.26666666666666666" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/drawable/cart_background.xml" value="0.2708333333333333" />
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/drawable/category_filter_default.xml" value="0.26666666666666666" />
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/drawable/category_filter_selected.xml" value="0.26666666666666666" />
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/drawable/input_desgin1.xml" value="0.26666666666666666" />
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/drawable/input_design.xml" value="0.26666666666666666" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_admin_add_new_product.xml" value="0.2546875" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_cart.xml" value="0.2546875" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_detail.xml" value="0.2546875" />
@@ -19,7 +23,7 @@
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_product_detail.xml" value="0.2546875" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_profile.xml" value="0.2546875" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_register.xml" value="0.2546875" />
-        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_search_product.xml" value="0.25" />
+        <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_search_product.xml" value="0.268" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_settins.xml" value="0.25" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/activity_welcome.xml" value="0.2546875" />
         <entry key="..\:/Tom/Project/Android/FinalAssignment/android-dev-2021C-team-15-eCommerce/app/src/main/res/layout/fragment_home.xml" value="0.2546875" />
