@@ -107,7 +107,7 @@
     <EditText
         android:id="@+id/addressProfile"
         android:layout_width="0dp"
-        android:layout_height="134dp"
+        android:layout_height="120dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:ems="10"
@@ -124,7 +124,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/buttons"
         android:padding="10dp"
         android:text="Save Change"
@@ -142,7 +142,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/buttons"
         android:padding="10dp"
         android:text="Logout"
@@ -151,6 +151,23 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderHistoryBtn" />
+
+    <Button
+        android:id="@+id/orderHistoryBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/buttons"
+        android:padding="10dp"
+        android:text="Order History"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addressProfile" />
 

@@ -3,6 +3,7 @@ package group15.finalassignment.ecommerce.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,7 +27,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private TextView nameView, emailView, phoneView;
     private EditText addressEditText;
-    private Button logoutBtn, saveChangeBtn;
+    private Button logoutBtn, saveChangeBtn, orderHistoryBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class UserProfileActivity extends AppCompatActivity {
         addressEditText = (EditText) findViewById(R.id.addressProfile);
         saveChangeBtn = (Button) findViewById(R.id.saveChangeBtn);
         logoutBtn = (Button) findViewById(R.id.logoutBtn);
+        orderHistoryBtn = (Button) findViewById(R.id.orderHistoryBtn);
 
         fetchUserInfo();
 
@@ -66,6 +68,14 @@ public class UserProfileActivity extends AppCompatActivity {
                     return;
                 }
                 updateUserAddress(address);
+            }
+        });
+
+        orderHistoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, OrderHistoryActivity.class);
+                startActivity(intent);
             }
         });
     }

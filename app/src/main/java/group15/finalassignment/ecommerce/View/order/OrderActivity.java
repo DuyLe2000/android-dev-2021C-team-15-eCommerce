@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -76,6 +77,7 @@ public class OrderActivity extends AppCompatActivity {
                     order.setAddress(editTextAddress.getText().toString());
                     order.setTotalCost(cart.getTotalCost());
                     order.setItemList(cart.getItemList());
+                    order.setDateTime(Timestamp.now());
 
                     db.collection("order")
                             .add(order)

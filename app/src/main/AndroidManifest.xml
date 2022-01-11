@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
+            android:name=".View.OrderDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".View.OrderHistoryActivity"
+            android:exported="true" />
+        <activity
             android:name=".View.UserProfileActivity"
             android:exported="true" />
         <activity
