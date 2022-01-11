@@ -93,17 +93,6 @@
                         android:layout_marginLeft="9dp"
                         android:text="We provide best products." />
 
-                    <TextView
-                        android:id="@+id/newProducts_see_all"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginRight="8dp"
-                        android:fontFamily="@font/amethysta"
-                        android:text="See All"
-                        android:textColor="@color/pink"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
                 </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -143,17 +132,6 @@
                     android:layout_marginLeft="9dp"
                     android:text="We provide best products." />
 
-                <TextView
-                    android:id="@+id/popular_see_all"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="8dp"
-                    android:fontFamily="@font/amethysta"
-                    android:text="See All"
-                    android:textColor="@color/pink"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView

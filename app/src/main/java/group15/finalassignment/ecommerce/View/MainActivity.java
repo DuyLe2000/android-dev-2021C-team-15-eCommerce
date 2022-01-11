@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     Fragment homeFragment;
     ImageButton profileBtn, cartBtn, searchBtn;
+    EditText searchField;
 
     private final ActivityResultLauncher<Intent> registerOrLogin = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         profileBtn = (ImageButton) findViewById(R.id.profileBtn);
         cartBtn = (ImageButton) findViewById(R.id.cartBtn);
         searchBtn = findViewById(R.id.searchBtn);
+        searchField = findViewById(R.id.search_field_main);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -90,8 +93,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         searchBtn.setOnClickListener(view -> {
-            Intent i = new Intent(MainActivity.this, SearchProductActivity.class);
-            startActivity(i);
+            Intent intent = new Intent(MainActivity.this, SearchProductActivity.class);
+            intent.putExtra("category", "");
+            intent.putExtra("name", searchField.getText().toString());
+            startActivity(intent);
         });
     }
 

@@ -56,6 +56,7 @@ public class SearchProductActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         category = intent.getExtras().getString("category");
+        searchName = intent.getExtras().getString("name");
 
         db = FirebaseFirestore.getInstance();
 

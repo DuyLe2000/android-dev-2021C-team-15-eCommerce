@@ -111,6 +111,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(container.getContext(), SearchProductActivity.class);
                 intent.putExtra("category", "");
+                intent.putExtra("name", "");
                 startActivity(intent);
             }
         });
