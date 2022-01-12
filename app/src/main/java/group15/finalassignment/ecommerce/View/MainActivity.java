@@ -4,11 +4,13 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -18,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import group15.finalassignment.ecommerce.R;
+import group15.finalassignment.ecommerce.View.service.NotificationService;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == RESULT_OK) {
                         if (auth.getCurrentUser() == null) {
+                            Intent serviceIntent = new Intent(MainActivity.this, NotificationService.class);
+                            stopService(serviceIntent);
                             cartBtn.setVisibility(View.GONE);
                         }
                     }
@@ -68,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
+        if (auth.getCurrentUser() != null) {
+            Intent serviceIntent = new Intent(this, NotificationService.class);
+            startService(serviceIntent);
+        }
 
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override

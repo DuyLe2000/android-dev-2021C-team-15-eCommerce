@@ -29,6 +29,7 @@ import group15.finalassignment.ecommerce.View.model.Cart;
 import group15.finalassignment.ecommerce.View.model.CartItem;
 import group15.finalassignment.ecommerce.View.model.Product;
 import group15.finalassignment.ecommerce.View.order.OrderActivity;
+import group15.finalassignment.ecommerce.View.service.NotificationService;
 
 public class DetailActivity extends AppCompatActivity {
     FirebaseFirestore db;
@@ -133,6 +134,8 @@ public class DetailActivity extends AppCompatActivity {
                 }
 
                 addCart();
+                Intent serviceIntent = new Intent(DetailActivity.this, NotificationService.class);
+                startService(serviceIntent);
             }
         });
 

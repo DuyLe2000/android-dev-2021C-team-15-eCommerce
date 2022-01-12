@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import group15.finalassignment.ecommerce.R;
+import group15.finalassignment.ecommerce.View.service.NotificationService;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == RESULT_OK) {
+                        Intent serviceIntent = new Intent(WelcomeActivity.this, NotificationService.class);
+                        startService(serviceIntent);
                         setResult(RESULT_OK);
                         finish();
                     }

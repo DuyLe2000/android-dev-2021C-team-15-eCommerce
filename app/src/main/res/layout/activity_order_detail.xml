@@ -170,6 +170,7 @@
         android:text="Order"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -180,6 +181,7 @@
         android:layout_marginStart="5dp"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/idOrderDetailLabel"
         app:layout_constraintStart_toEndOf="@+id/idOrderDetailLabel"
         app:layout_constraintTop_toTopOf="@+id/idOrderDetailLabel" />

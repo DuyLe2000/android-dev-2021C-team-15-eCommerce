@@ -241,9 +241,11 @@ public class SearchProductActivity extends AppCompatActivity {
             return;
         }
         for (QueryDocumentSnapshot document:queryDocumentSnapshots) {
-            if (document.getString("name").toLowerCase(Locale.ROOT).contains(searchName.toLowerCase(Locale.ROOT))) {
-                Product product = document.toObject(Product.class);
-                resultArea.addView(createProductCard(product));
+            if (document.getString("name") != null) {
+                if (document.getString("name").toLowerCase(Locale.ROOT).contains(searchName.toLowerCase(Locale.ROOT))) {
+                    Product product = document.toObject(Product.class);
+                    resultArea.addView(createProductCard(product));
+                }
             }
         }
     }
