@@ -21,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import group15.finalassignment.ecommerce.R;
 import group15.finalassignment.ecommerce.View.service.NotificationService;
+import group15.finalassignment.ecommerce.View.service.RestartNotificationService;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
@@ -117,6 +118,17 @@ public class MainActivity extends AppCompatActivity {
         if (auth.getCurrentUser() != null) {
             cartBtn.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (auth.getCurrentUser() != null) {
+            Intent broadcastIntent = new Intent();
+            broadcastIntent.setAction("restartservice");
+            broadcastIntent.setClass(this, RestartNotificationService.class);
+            this.sendBroadcast(broadcastIntent);
+        }
+        super.onDestroy();
     }
 
     private void loadFragment(Fragment homeFragment) {

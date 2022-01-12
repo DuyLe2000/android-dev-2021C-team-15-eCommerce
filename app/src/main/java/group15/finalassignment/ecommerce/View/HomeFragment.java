@@ -143,7 +143,7 @@ public class HomeFragment extends Fragment {
         newProductsAdapter = new NewProductsAdapter(getContext(), newProductList);
         newProductsRecyclerView.setAdapter(newProductsAdapter);
 
-        db.collection("NewProducts")
+        db.collection("NewProduct")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
