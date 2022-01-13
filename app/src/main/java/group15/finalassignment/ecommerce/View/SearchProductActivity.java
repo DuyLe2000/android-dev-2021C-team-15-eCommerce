@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import group15.finalassignment.ecommerce.R;
+import group15.finalassignment.ecommerce.View.model.CategoryModel;
 import group15.finalassignment.ecommerce.View.model.Product;
 
 import android.annotation.SuppressLint;
@@ -17,7 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +33,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 public class SearchProductActivity extends AppCompatActivity {
     FirebaseFirestore db;
@@ -228,8 +227,6 @@ public class SearchProductActivity extends AppCompatActivity {
             Intent intent = new Intent(SearchProductActivity.this, DetailActivity.class);
             intent.putExtra("detail", product);
             startActivity(intent);
-            // finish();
-            Toast.makeText(SearchProductActivity.this, product.getName() + " clicked!", Toast.LENGTH_SHORT).show();
         });
 
         return productCard;

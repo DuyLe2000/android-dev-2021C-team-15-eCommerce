@@ -1,4 +1,4 @@
-package group15.finalassignment.ecommerce.View.order;
+package group15.finalassignment.ecommerce.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,15 +20,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import group15.finalassignment.ecommerce.R;
 import group15.finalassignment.ecommerce.View.model.Cart;
 import group15.finalassignment.ecommerce.View.model.Order;
-import group15.finalassignment.ecommerce.View.model.Product;
 
 public class OrderActivity extends AppCompatActivity {
     FirebaseFirestore db;

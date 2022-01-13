@@ -29,7 +29,7 @@
             android:name=".View.SearchProductActivity"
             android:exported="true" />
         <activity
-            android:name=".View.order.OrderActivity"
+            android:name=".View.OrderActivity"
             android:exported="true" />
         <activity
             android:name=".View.DetailActivity"

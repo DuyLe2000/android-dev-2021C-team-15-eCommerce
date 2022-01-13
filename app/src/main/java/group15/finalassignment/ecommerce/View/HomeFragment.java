@@ -22,7 +22,6 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -32,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import group15.finalassignment.ecommerce.R;
+import group15.finalassignment.ecommerce.View.model.CategoryModel;
 import group15.finalassignment.ecommerce.View.model.Product;
 
 public class HomeFragment extends Fragment {

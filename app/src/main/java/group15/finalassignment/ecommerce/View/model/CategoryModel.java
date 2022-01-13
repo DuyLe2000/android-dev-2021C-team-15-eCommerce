@@ -1,4 +1,4 @@
-package group15.finalassignment.ecommerce.View;
+package group15.finalassignment.ecommerce.View.model;
 
 public class CategoryModel {
 

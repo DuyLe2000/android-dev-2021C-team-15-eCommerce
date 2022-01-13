@@ -28,7 +28,6 @@ import group15.finalassignment.ecommerce.R;
 import group15.finalassignment.ecommerce.View.model.Cart;
 import group15.finalassignment.ecommerce.View.model.CartItem;
 import group15.finalassignment.ecommerce.View.model.Product;
-import group15.finalassignment.ecommerce.View.order.OrderActivity;
 import group15.finalassignment.ecommerce.View.service.NotificationService;
 
 public class DetailActivity extends AppCompatActivity {

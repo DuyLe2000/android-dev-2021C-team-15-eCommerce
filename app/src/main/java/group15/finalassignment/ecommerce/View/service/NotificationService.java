@@ -72,7 +72,7 @@ public class NotificationService extends Service {
 
         createNotificationChannel(CHANNEL_ID);
         createNotificationChannel(CHANNEL_ID_FIREBASE);
-        Notification notification = composeNotification("RMIT Notification Service", "Notification for " + auth.getCurrentUser().getEmail(), CHANNEL_ID);
+        Notification notification = composeNotification("RMIT Store Notification Service", "Notification for " + auth.getCurrentUser().getEmail(), CHANNEL_ID);
         fetchUserCart();
 
         startForeground(1, notification);

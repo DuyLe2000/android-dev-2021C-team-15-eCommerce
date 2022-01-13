@@ -36,8 +36,6 @@ public class OtpActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
-    FireBaseHandler fireBaseHandler = new FireBaseHandler();
-
     public static final String TAG = OtpActivity.class.getName();
 
     private String mVerificationId;

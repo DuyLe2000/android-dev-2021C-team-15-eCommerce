@@ -33,7 +33,6 @@ import java.util.Map;
 import group15.finalassignment.ecommerce.R;
 import group15.finalassignment.ecommerce.View.model.Cart;
 import group15.finalassignment.ecommerce.View.model.CartItem;
-import group15.finalassignment.ecommerce.View.order.OrderActivity;
 
 public class CartActivity extends AppCompatActivity {
     FirebaseFirestore db;
